@@ -85,8 +85,11 @@ tidy_dataset <- ddply(output1, .(id, activity), .fun=function(x){ colMeans(x[,-c
 # appends "_avg" to colnames
 colnames(tidy_dataset)[-c(1:2)] <- paste(colnames(tidy_dataset)[-c(1:2)], "_avg", sep="")
 
-# save tidy_dataset into results folder
+# save tidy_dataset into output folder
 f <- paste(output, "/", "tidy_dataset.csv" ,sep="")
 write.csv(tidy_dataset,f)
+
+# write the codebook for the tidy dataset into CodeBook.txt
+capture.output(codebook(tidy_dataset), file="CodeBook.txt")
 
 
