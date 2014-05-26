@@ -89,6 +89,12 @@ colnames(tidy_dataset)[-c(1:2)] <- paste(colnames(tidy_dataset)[-c(1:2)], "_avg"
 f <- paste(output, "/", "tidy_dataset.csv" ,sep="")
 write.csv(tidy_dataset,f)
 
+##install epicalc if not available locally
+if(!is.element("epicalc", installed.packages()[,1])){
+  print("epicalc not installed.. installing it")
+  install.packages("epicalc")
+}
+library(epicalc)
 # write the codebook for the tidy dataset into CodeBook.txt
 capture.output(codebook(tidy_dataset), file="CodeBook.txt")
 
